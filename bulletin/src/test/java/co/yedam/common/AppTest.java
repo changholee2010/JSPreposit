@@ -3,7 +3,6 @@ package co.yedam.common;
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.board.mapper.BoardMapper;
-import co.yedam.board.vo.BoardVO;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
