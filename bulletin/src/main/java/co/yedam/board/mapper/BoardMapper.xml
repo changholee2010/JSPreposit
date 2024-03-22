@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.yedam.board.mapper.BoardMapper">
+
+	<select id="boardList" resultType="co.yedam.board.vo.BoardVO">
+		select /*+ INDEX_DESC(b BOARD_PK) */ b.*
+		from   tbl_board b
+		<![CDATA[
+		where rownum <= 10
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="co.yedam.board.vo.BoardVO">
+		insert into tbl_board (board_no, title, content, writer)
+		values(board_seq.nextval, #{title}, #{content}, #{writer} )
+	</insert>
+	
+	<update id="updateBoard" parameterType="co.yedam.board.vo.BoardVO">
+		update tbl_board
+		set    title = #{title}
+		      ,content = #{content}
+		      ,writer = #{writer}
+		where board_no = #{boardNo}
+	</update>
+
+</mapper>
