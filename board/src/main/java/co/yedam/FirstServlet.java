@@ -41,7 +41,7 @@ public class FirstServlet extends HttpServlet {
 		SqlSession session = DataSource.getInstance().openSession();
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
 
-		List<BoardVO> list = mapper.selectList();
+		List<BoardVO> list = mapper.selectList(null);
 
 		PrintWriter out = resp.getWriter();
 		String html = "<table border='1'>";

@@ -27,7 +27,7 @@ public class ModifyBoard implements Control {
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.modifyBoard(vo)) {
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page=3&searchCondition=T&keyword=javascript");
 
 		} else {
 			req.setAttribute("msg", "등록중 에러가 발생.");
