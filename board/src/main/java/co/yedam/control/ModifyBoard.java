@@ -15,6 +15,7 @@ public class ModifyBoard implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// boardNo, title, content
 		String bno = req.getParameter("boardNo");
 		String tit = req.getParameter("title");
@@ -27,7 +28,7 @@ public class ModifyBoard implements Control {
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.modifyBoard(vo)) {
-			resp.sendRedirect("boardList.do?page=3&searchCondition=T&keyword=javascript");
+			resp.sendRedirect("boardList.do");
 
 		} else {
 			req.setAttribute("msg", "등록중 에러가 발생.");
