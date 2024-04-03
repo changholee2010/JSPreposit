@@ -46,8 +46,8 @@
   </select>
   
   <insert id="insertBoard" parameterType="co.yedam.vo.BoardVO">
-    insert into tbl_board (board_no, title, content, writer)
-    values(board_seq.nextval, #{title}, #{content}, #{writer})
+    insert into tbl_board (board_no, title, content, writer, img)
+    values(board_seq.nextval, #{title}, #{content}, #{writer}, #{img})
   </insert>
   
   <delete id="deleteBoard" parameterType="int">

@@ -28,6 +28,9 @@
       <td><c:out value="${bvo.createDate }" /></td>
     </tr>
     <tr>
+      <td colspan="4"><img src="upload/${bvo.img }" width="200px"></td>
+    </tr>
+    <tr>
       <td colspan="4" align="center">
         <button type="submit" class="btn btn-primary">수정</button>
         <button type="button" ${logId != bvo.writer ? 'disabled' : ''}   class="btn btn-warning" onclick="deleteFormFunc()">삭제</button>
