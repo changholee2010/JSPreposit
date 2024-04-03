@@ -21,6 +21,11 @@ public class ModifyBoard implements Control {
 		String tit = req.getParameter("title");
 		String con = req.getParameter("content");
 
+		// 추가파리미터.
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
+
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setTitle(tit);
@@ -28,7 +33,7 @@ public class ModifyBoard implements Control {
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.modifyBoard(vo)) {
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page=" + page + "&searchCondition=" + sc + "&keyword=" + kw);
 
 		} else {
 			req.setAttribute("msg", "등록중 에러가 발생.");

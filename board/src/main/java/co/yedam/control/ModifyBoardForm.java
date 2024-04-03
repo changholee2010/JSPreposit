@@ -17,11 +17,18 @@ public class ModifyBoardForm implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String bno = req.getParameter("bno");
+		// 추가파리미터.
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 
 		BoardService svc = new BoardServiceImpl();
 		BoardVO bvo = svc.getBoard(Integer.parseInt(bno));
 
 		req.setAttribute("bvo", bvo);
+		req.setAttribute("page", page);
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 
 		req.getRequestDispatcher("WEB-INF/view/modifyForm.jsp")//
 				.forward(req, resp);

@@ -8,12 +8,15 @@
 
 <form action="modifyBoard.do">
   <input type="hidden" name="boardNo" value="${bvo.boardNo }">
+  <input type="hidden" name="page" value="${page }">
+  <input type="hidden" name="searchCondition" value="${searchCondition }">
+  <input type="hidden" name="keyword" value="${keyword }">
   <table class="table">
     <tr>
       <th>글번호</th>
       <td><c:out value="${bvo.boardNo }" /></td>
       <th>글제목</th>
-      <td><input class="form-control" type="text" name="title" value="${bvo.writer }"></td>
+      <td><input class="form-control" type="text" name="title" value="${bvo.title }"></td>
     </tr>
     <tr>
       <th>글내용</th>

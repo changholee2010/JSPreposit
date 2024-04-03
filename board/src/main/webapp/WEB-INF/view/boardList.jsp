@@ -58,7 +58,7 @@
   </form>
 </div>
 <!-- 검색조건 추가. -->
-
+<p>${paging }</p>
 <h3>게시글 목록</h3>
 <table class="table table-striped">
   <thead>
@@ -72,7 +72,9 @@
   <tbody>
     <c:forEach var="vo" items="${blist }">
     <tr>
-      <td align="center"><a href="getboard.do?bno=${vo.boardNo }">${vo.boardNo }</a></td>
+      <td align="center">
+        <a href="getboard.do?bno=${vo.boardNo }&page=${paging.page}&searchCondition=${searchCondition}&keyword=${keyword}">${vo.boardNo }</a>
+      </td>
       <td><c:out value="${vo.title }" /></td>
       <td><c:out value="${vo.writer }" /></td>
       <td><c:out value="${vo.createDate }" /></td>

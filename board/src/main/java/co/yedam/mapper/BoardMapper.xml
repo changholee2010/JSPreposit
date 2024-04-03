@@ -32,7 +32,7 @@
 	      select rownum rn, b.*
 	      from tbl_board b
 	      <include refid="searchCond" />
-	      order by board_no ) a
+	      order by board_no desc) a
 	where rn > (#{page} - 1) * 5
 	<![CDATA[
 	and   rn <= (#{page} * 5)
