@@ -13,7 +13,7 @@ public class AddBoardForm implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("boardForm.tiles")//
+		req.getRequestDispatcher("board/boardForm.tiles")//
 				.forward(req, resp);
 
 	}

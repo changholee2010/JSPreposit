@@ -34,7 +34,7 @@ public class BoardControl implements Control {
 		req.setAttribute("keyword", kw);
 
 		// 페이지재지정.
-		req.getRequestDispatcher("board.tiles")//
+		req.getRequestDispatcher("board/board.tiles")//
 				.forward(req, resp);
 
 	}

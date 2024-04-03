@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
@@ -10,7 +10,8 @@
     <put-attribute name="body" value="/tiles/home_body.jsp" />
     <put-attribute name="footer" value="/tiles/credits.jsp" />
   </definition>
-  
+
+  <!-- User용. -->
   <definition name="boardapp" template="/WEB-INF/layout/template.jsp">
     <put-attribute name="title" value="Tiles Template Homepage" />
     <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
@@ -18,8 +19,24 @@
     <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
     <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
-  <definition name="WILDCARD:*" extends="boardapp">
+  <definition name="WILDCARD:board/*" extends="boardapp">
     <put-attribute name="body" value="/WEB-INF/view/{1}.jsp" />
   </definition>
-  
+
+  <!-- Admin용. -->
+  <definition name="adminapp" template="/WEB-INF/layout/admin_temp.jsp">
+    <put-attribute name="title" value="Tiles Template Homepage" />
+    <put-attribute name="nav" value="/WEB-INF/layout/admin_nav.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/admin_menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layout/admin_body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/admin_footer.jsp" />
+  </definition>
+  <definition name="WILDCARD:member/*" extends="adminapp">
+    <put-attribute name="body" value="/WEB-INF/view/member/{1}.jsp" />
+  </definition>
+
+  <definition name="WILDCARD:*/*" extends="boardapp">
+    <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
+  </definition>
+
 </tiles-definitions>

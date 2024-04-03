@@ -25,19 +25,30 @@ public class LoginControl implements Control {
 		vo.setMemberPw(pw);
 
 		MemberService svc = new MemberServiceImpl();
-		
 		vo = svc.loginCheck(vo);
+
+		HttpSession session = req.getSession();
+
 		if (vo != null) {
+			session.removeAttribute("msg");
+
 			// 로그인성공하면 로그인id를 세션에 저장.
-			HttpSession session = req.getSession();
 			session.setAttribute("logId", vo.getMemberId());
 			session.setAttribute("auth", vo.getResponsibility());// User, Admin
 
-			resp.sendRedirect("boardList.do");
+			if (vo.getResponsibility().equals("Admin")) {
+				// 관리자 페이지.
+				req.getRequestDispatcher("member/user.tiles").forward(req, resp);
+
+			} else {
+				// 사용자 페이지.
+				req.getRequestDispatcher("user/user.tiles").forward(req, resp);
+				// resp.sendRedirect("boardList.do");
+			}
 
 		} else {
-			req.setAttribute("msg", "id와 password를 확인하세요");
-			req.getRequestDispatcher("WEB-INF/view/loginForm.jsp").forward(req, resp);
+			session.setAttribute("msg", "id와 password를 확인하세요");
+			resp.sendRedirect("loginForm.do");
 
 		}
 

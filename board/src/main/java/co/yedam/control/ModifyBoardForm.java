@@ -30,7 +30,7 @@ public class ModifyBoardForm implements Control {
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 
-		req.getRequestDispatcher("WEB-INF/view/modifyForm.jsp")//
+		req.getRequestDispatcher("board/modifyForm.tiles")//
 				.forward(req, resp);
 
 	}
