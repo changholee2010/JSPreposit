@@ -47,7 +47,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoard());
 		map.put("/removeForm.do", new RemoveBoardForm());
 		map.put("/removeBoard.do", new RemoveBoard());
-		
+
 		// member관련.
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());

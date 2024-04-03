@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
-<%@ include file="../includes/menu.jsp" %>
-<%@ include file="../includes/header.jsp" %>
-
 <h3>상세페이지</h3>
 <form name="notUse"></form>
 <form name="submitForm" action="modifyForm.do">
@@ -59,6 +56,3 @@
   })
   
 </script>
-<%@ include file="../includes/footer.jsp" %>
-
-

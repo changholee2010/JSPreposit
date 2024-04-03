@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ include file="../includes/menu.jsp" %>
-<%@ include file="../includes/header.jsp" %>
-
 <c:if test="${msg != null }">
   <p><c:out value="${msg }" /></p>
 </c:if>
@@ -26,4 +23,3 @@
 		</tr>
 	</table>
 </form>
-<%@ include file="../includes/footer.jsp" %>
