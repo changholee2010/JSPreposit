@@ -28,7 +28,9 @@
       <td><c:out value="${bvo.createDate }" /></td>
     </tr>
     <tr>
-      <td colspan="4"><img src="upload/${bvo.img }" width="200px"></td>
+      <td colspan="4">
+        <c:if test="${not empty bvo.img }"><img src="upload/${bvo.img }" width="200px"></c:if>
+      </td>
     </tr>
     <tr>
       <td colspan="4" align="center">

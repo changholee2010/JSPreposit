@@ -12,4 +12,5 @@ public interface BoardService {
 	boolean addBoard(BoardVO vo);
 	boolean modifyBoard(BoardVO vo);
 	boolean removeBoard(int bno);
+	boolean addViewCnt(int bno);
 }

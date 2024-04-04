@@ -47,4 +47,8 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.deleteBoard(bno) == 1;
 	}
 
+	@Override
+	public boolean addViewCnt(int bno) {
+		return mapper.updateCnt(bno) == 1;
+	}
 }

@@ -16,7 +16,7 @@
             </c:otherwise>
         </c:choose>
         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addMemberForm.do">회원가입</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="domForm.do">DOM연습</a>
         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
     </div>
 </div>

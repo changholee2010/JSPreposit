@@ -34,6 +34,9 @@
   <definition name="WILDCARD:member/*" extends="adminapp">
     <put-attribute name="body" value="/WEB-INF/view/member/{1}.jsp" />
   </definition>
+  
+  <!-- 상품관련. header/body/footer product.homepage   -->
+  <!-- productList.do => product/productList.tiles => /WEB-INF/view/prod/{1}.jsp -->
 
   <definition name="WILDCARD:*/*" extends="boardapp">
     <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />

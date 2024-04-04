@@ -8,4 +8,7 @@ public interface MemberService {
 	public MemberVO loginCheck(MemberVO mvo);
 	public boolean addMember(MemberVO mvo);
 	public List<MemberVO> memberList();
+	
+	// 상품목록.
+	
 }

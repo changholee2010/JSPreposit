@@ -27,6 +27,7 @@ public class BoardControl implements Control {
 		// db조회 -> 페이지재지정.
 		BoardService svc = new BoardServiceImpl();// new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
+		svc.addViewCnt(Integer.parseInt(bno));
 
 		req.setAttribute("bvo", vo);
 		req.setAttribute("page", page);

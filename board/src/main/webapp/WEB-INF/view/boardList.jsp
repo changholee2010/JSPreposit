@@ -3,7 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <style>
 .center {
@@ -64,6 +65,7 @@
       <th>제목</th>
       <th>작성자</th>
       <th>작성일시</th>
+      <th>조회수</th>
     </tr>
   </thead>
   <tbody>
@@ -74,7 +76,8 @@
       </td>
       <td><c:out value="${vo.title }" /></td>
       <td><c:out value="${vo.writer }" /></td>
-      <td><c:out value="${vo.createDate }" /></td>
+      <td><fmt:formatDate value="${vo.createDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+      <td><c:out value="${vo.viewCnt }" /></td>
     </tr>
     </c:forEach>
   </tbody>
