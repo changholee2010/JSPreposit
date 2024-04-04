@@ -13,4 +13,15 @@
     and   member_pw = #{memberPw}
   </select>
   
+  <insert id="insertMember" parameterType="co.yedam.vo.MemberVO">
+    insert into tbl_member (member_id, member_pw, member_nm, phone)
+    values (#{memberId},#{memberPw},#{memberNm},#{phone})
+  </insert>
+  
+  <select id="selectMembers">
+    select *
+    from tbl_member
+    order by member_id
+  </select>
+  
 </mapper>

@@ -11,4 +11,5 @@ public class MemberVO {
 	private String memberNm;
 	private String responsibility;
 	private Date createDate;
+	private String phone;
 }
