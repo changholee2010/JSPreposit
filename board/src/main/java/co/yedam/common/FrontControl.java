@@ -14,6 +14,9 @@ import co.yedam.control.AddBoard;
 import co.yedam.control.AddBoardForm;
 import co.yedam.control.BoardControl;
 import co.yedam.control.BoardListControl;
+import co.yedam.control.LoginControl;
+import co.yedam.control.LoginFormControl;
+import co.yedam.control.LogoutControl;
 import co.yedam.control.ModifyBoard;
 import co.yedam.control.ModifyBoardForm;
 import co.yedam.control.RemoveBoard;
@@ -44,6 +47,11 @@ public class FrontControl extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoard());
 		map.put("/removeForm.do", new RemoveBoardForm());
 		map.put("/removeBoard.do", new RemoveBoard());
+
+		// member관련.
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
 	}
 
 	@Override

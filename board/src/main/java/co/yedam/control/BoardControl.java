@@ -19,14 +19,22 @@ public class BoardControl implements Control {
 		// Control - Service - Jdbc
 
 		String bno = req.getParameter("bno");
+		// 추가파리미터.
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
+
 		// db조회 -> 페이지재지정.
 		BoardService svc = new BoardServiceImpl();// new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
 
 		req.setAttribute("bvo", vo);
+		req.setAttribute("page", page);
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 
 		// 페이지재지정.
-		req.getRequestDispatcher("WEB-INF/view/board.jsp")//
+		req.getRequestDispatcher("board/board.tiles")//
 				.forward(req, resp);
 
 	}
