@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.control.AddBoard;
 import co.yedam.control.AddBoardForm;
+import co.yedam.control.AddMemberAjax;
 import co.yedam.control.AddMemberControl;
 import co.yedam.control.AddMemberForm;
 import co.yedam.control.BoardControl;
@@ -20,12 +21,15 @@ import co.yedam.control.DomForm;
 import co.yedam.control.LoginControl;
 import co.yedam.control.LoginFormControl;
 import co.yedam.control.LogoutControl;
+import co.yedam.control.MemberAjax;
 import co.yedam.control.MemberDataControl;
+import co.yedam.control.MemberForm;
 import co.yedam.control.MemberListControl;
 import co.yedam.control.ModifyBoard;
 import co.yedam.control.ModifyBoardForm;
 import co.yedam.control.RemoveBoard;
 import co.yedam.control.RemoveBoardForm;
+import co.yedam.control.RemoveMemberControl;
 
 // init -> service -> destroy
 public class FrontControl extends HttpServlet {
@@ -66,6 +70,11 @@ public class FrontControl extends HttpServlet {
 		// json 데이터 생성.
 		map.put("/domForm.do", new DomForm());
 		map.put("/memberData.do", new MemberDataControl());
+		
+		map.put("/memberForm.do", new MemberForm()); //회원관리화면 Ajax처리.
+		map.put("/memberAjax.do", new MemberAjax()); // 회원목록 json 반환.
+		map.put("/removeMember.do", new RemoveMemberControl());
+		map.put("/addMemberAjax.do", new AddMemberAjax());
 	}
 
 	@Override

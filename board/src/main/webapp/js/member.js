@@ -28,7 +28,7 @@ function makeBody() {
 	let thd = document.createElement('tbody');
 	members.forEach((elem, idx) => {
 		//console.log(elem, idx);
-		if (idx < 5) {
+		if (idx < 2) {
 			thd.appendChild(makeRow(elem)); // tr생성 반환.			
 		}
 	});
@@ -45,21 +45,24 @@ function makeRow(member = {}) {
 		tr.appendChild(td);
 	})
 	tr.addEventListener('click', function(e) {
-		console.log(tr.children)
+		//console.log(tr.children)
+		e.stopPropagation();
 		document.getElementById('mid').value = tr.children[0].innerHTML;
 		document.getElementById('fname').value = tr.children[1].innerHTML;
 		document.getElementById('lname').value = tr.children[2].innerHTML;
 		document.getElementById('email').value = tr.children[3].innerHTML;
 		document.getElementById('salary').value = tr.children[4].innerHTML;
 		document.getElementById('gender').value = tr.children[5].innerHTML;
-
-	})
+	}, false); // capturing(상->하), bubbling(하->상)
 	// 버튼 추가.
 	let btn = document.createElement('button');
 	btn.innerText = '삭제';
-	btn.className = "btn";
+	btn.className = "btn"; // <button class="btn" /> btn.setAttribute('class', 'btn')
 	btn.classList.add('btn-danger');
-	btn.addEventListener('click', e => btn.parentElement.parentElement.remove());
+	btn.addEventListener('click', e => {
+		e.stopPropagation(); // 상위요소로 이벤트 전파 차단.
+		btn.parentElement.parentElement.remove();
+	}, false);
 	let td = document.createElement('td');
 	td.appendChild(btn);
 	tr.appendChild(td);

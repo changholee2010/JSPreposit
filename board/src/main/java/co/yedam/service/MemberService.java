@@ -9,6 +9,8 @@ public interface MemberService {
 	public boolean addMember(MemberVO mvo);
 	public List<MemberVO> memberList();
 	
+	public boolean removeMember(String mid);
+	
 	// 상품목록.
 	
 }

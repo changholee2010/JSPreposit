@@ -24,4 +24,9 @@
     order by member_id
   </select>
   
+  <delete id="deleteMember" parameterType="string">
+    delete from tbl_member
+    where member_id = #{mid}
+  </delete>
+  
 </mapper>

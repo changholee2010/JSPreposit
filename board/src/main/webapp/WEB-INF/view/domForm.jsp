@@ -44,12 +44,14 @@
   </table>
 </form>
 
+<input id="year"><input id="month"><button id="calBtn">선택</button>
+
 <div id="show">
   <table border='1' class="table">
     <thead id="header" />
     <tbody id="list" />
   </table>
 </div>
+시간: <span id="timer"></span>
 
-<script src="js/mock_data.js"></script>
-<script src="js/member.js"></script>
+<script src="js/ajax.js"></script>

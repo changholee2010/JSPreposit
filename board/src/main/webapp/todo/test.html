@@ -58,6 +58,23 @@
     <span>in</span>
     <span>dolorum.</span>
   </div>
+  
+  <script>
+    // findBtn의 클릭이벤트를 생성.
+    // input태그의 값을 확인.
+    // span 요소 모두를 가져온다.
+    // input값과  span의 값을 비교한다. 같으면 remove힌다.
+    // 입력값을 지워준다.
+    document.getElementById('findBtn').addEventListener('click', function(e){
+    	let userValue = document.querySelector('#keyword').value;
+    	document.querySelectorAll('#show span').forEach(elem => {
+    		if (userValue == elem.innerText) {
+    			elem.remove();
+    		}
+    	})
+    	document.querySelector('#keyword').value = '';
+    })
+  </script>
 </body>
 
 </html>

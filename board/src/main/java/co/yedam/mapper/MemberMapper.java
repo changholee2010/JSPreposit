@@ -8,6 +8,6 @@ public interface MemberMapper {
 	public MemberVO selectMember(MemberVO mvo);
 	public int insertMember(MemberVO mvo);
 	public List<MemberVO> selectMembers();
-	
+	public int deleteMember(String mid);
 	// 상품목록.
 }
