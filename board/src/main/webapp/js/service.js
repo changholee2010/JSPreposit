@@ -70,10 +70,3 @@ document.getElementById('addBtn').addEventListener('click', function(e) {
 
 	}
 })
-
-
-
-
-
-
-

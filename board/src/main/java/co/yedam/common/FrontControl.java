@@ -66,12 +66,12 @@ public class FrontControl extends HttpServlet {
 		map.put("/addMemberForm.do", new AddMemberForm());
 		map.put("/addMember.do", new AddMemberControl());
 		map.put("/memberList.do", new MemberListControl());
-		
+
 		// json 데이터 생성.
 		map.put("/domForm.do", new DomForm());
 		map.put("/memberData.do", new MemberDataControl());
-		
-		map.put("/memberForm.do", new MemberForm()); //회원관리화면 Ajax처리.
+
+		map.put("/memberForm.do", new MemberForm()); // 회원관리화면 Ajax처리.
 		map.put("/memberAjax.do", new MemberAjax()); // 회원목록 json 반환.
 		map.put("/removeMember.do", new RemoveMemberControl());
 		map.put("/addMemberAjax.do", new AddMemberAjax());
