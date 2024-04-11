@@ -30,6 +30,8 @@ import co.yedam.control.ModifyBoardForm;
 import co.yedam.control.RemoveBoard;
 import co.yedam.control.RemoveBoardForm;
 import co.yedam.control.RemoveMemberControl;
+import co.yedam.control.RemoveReply;
+import co.yedam.control.ReplyList;
 
 // init -> service -> destroy
 public class FrontControl extends HttpServlet {
@@ -75,6 +77,10 @@ public class FrontControl extends HttpServlet {
 		map.put("/memberAjax.do", new MemberAjax()); // 회원목록 json 반환.
 		map.put("/removeMember.do", new RemoveMemberControl());
 		map.put("/addMemberAjax.do", new AddMemberAjax());
+
+		map.put("/replyList.do", new ReplyList()); // 목록json
+		map.put("/removeReply.do", new RemoveReply()); // 삭제json
+
 	}
 
 	@Override

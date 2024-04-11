@@ -2,7 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<style>
+  div.reply div {
+    margin: auto;
+  }
 
+  div.reply ul {
+    list-style-type: none;
+    margin-top: 10px;
+  }
+
+  div.reply li {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  div.reply span {
+    display: inline-block;
+  }
+</style>
 <h3>상세페이지</h3>
 <form name="notUse"></form>
 <form name="submitForm" action="modifyForm.do">
@@ -52,25 +70,46 @@
   </table>
 </form>
 
+<div class="container reply">
+  <!-- 등록. -->
+
+  <!-- 댓글목록. -->
+  <div class="content">
+    <ul>
+      <li>
+        <span class="col-sm-2">글번호</span>
+        <span class="col-sm-5">댓글내용</span>
+        <span class="col-sm-2">작성자</span>
+        <span class="col-sm-2">삭제</span>
+      </li>
+      <li>
+        <hr />
+      </li>
+      <li style="display: none;">
+        <span class="col-sm-2">11</span>
+        <span class="col-sm-5">댓글입니다.</span>
+        <span class="col-sm-2">user10</span>
+        <button class="col-sm-2">삭제</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <div class="center">
+      <div class="pagination">
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <script src="js/boardService.js"></script> -->
 <script>
-
-  function deleteFormFunc() {
-    document.forms[1].action = "removeForm.do";
-    document.forms[1].submit();
-    document.forms[1].action = "modifyForm.do";
-  }
-
-  // submitForm
-  const logId = "${logId}";
-  const writer = "${bvo.writer}";
-  document.querySelector('form[name="submitForm"]') //
-    .addEventListener('submit', function (e) {
-      e.preventDefault(); // 기본기능 차단.
-      if (logId == writer) {
-        this.submit();
-      } else {
-        alert('권한이 없습니다.');
-      }
-    })
+const logId = "${logId}";
+const writer = "${bvo.writer}";
+const bno = "${bvo.boardNo }";
 
 </script>
+
+<script type="module" src="js/board.js"></script>
