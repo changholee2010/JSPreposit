@@ -15,8 +15,13 @@ import co.yedam.control.AddBoardForm;
 import co.yedam.control.AddMemberAjax;
 import co.yedam.control.AddMemberControl;
 import co.yedam.control.AddMemberForm;
+import co.yedam.control.AddReply;
 import co.yedam.control.BoardControl;
 import co.yedam.control.BoardListControl;
+import co.yedam.control.ChartForm;
+import co.yedam.control.ChartJson;
+import co.yedam.control.DataForm;
+import co.yedam.control.DataTable;
 import co.yedam.control.DomForm;
 import co.yedam.control.LoginControl;
 import co.yedam.control.LoginFormControl;
@@ -31,6 +36,7 @@ import co.yedam.control.RemoveBoard;
 import co.yedam.control.RemoveBoardForm;
 import co.yedam.control.RemoveMemberControl;
 import co.yedam.control.RemoveReply;
+import co.yedam.control.ReplyCount;
 import co.yedam.control.ReplyList;
 
 // init -> service -> destroy
@@ -80,6 +86,15 @@ public class FrontControl extends HttpServlet {
 
 		map.put("/replyList.do", new ReplyList()); // 목록json
 		map.put("/removeReply.do", new RemoveReply()); // 삭제json
+		map.put("/replyCount.do", new ReplyCount());
+		map.put("/addReply.do", new AddReply());
+
+		// 차트.
+		map.put("/chartForm.do", new ChartForm());
+		map.put("/chartJson.do", new ChartJson());
+
+		// datatable.
+		map.put("/datatable.do", new DataTable());
 
 	}
 

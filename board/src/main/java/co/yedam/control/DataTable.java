@@ -1,7 +1,9 @@
 package co.yedam.control;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,31 +18,23 @@ import co.yedam.service.ReplyService;
 import co.yedam.service.ReplyServiceImpl;
 import co.yedam.vo.ReplyVO;
 
-public class ReplyList implements Control {
+public class DataTable implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		resp.setContentType("text/json;charset=utf-8");
-
-		// 원본글 파리미터. => 댓글목록(json)
+		// TODO Auto-generated method stub
+		// json 작성ㅂ.
 		String bno = req.getParameter("bno");
-		String page = req.getParameter("page");
-		page = page == null ? "1" : page;
-
 		SearchVO search = new SearchVO();
 		search.setBno(Integer.parseInt(bno));
-		search.setRpage(Integer.parseInt(page));
 
 		ReplyService svc = new ReplyServiceImpl();
 		List<ReplyVO> list = svc.replyList(search);
+		Map<String, Object> map = new HashMap<>();
+		map.put("data", list);
 
-		Gson gson = new GsonBuilder()//
-				.setDateFormat("yyyy-MM-dd HH:mm:ss")//
-				.create();
-		String json = gson.toJson(list);
-
-		resp.getWriter().print(json);
+		Gson gson = new GsonBuilder().create();
+		resp.getWriter().print(gson.toJson(map));
 
 	}
 

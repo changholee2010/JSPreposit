@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+
 <style>
   div.reply div {
     margin: auto;
@@ -21,6 +27,37 @@
     display: inline-block;
   }
 </style>
+
+<style>
+  .center {
+    text-align: center;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+</style>
+
 <h3>상세페이지</h3>
 <form name="notUse"></form>
 <form name="submitForm" action="modifyForm.do">
@@ -69,47 +106,92 @@
     </tr>
   </table>
 </form>
-
 <div class="container reply">
   <!-- 등록. -->
-
-  <!-- 댓글목록. -->
-  <div class="content">
-    <ul>
-      <li>
-        <span class="col-sm-2">글번호</span>
-        <span class="col-sm-5">댓글내용</span>
-        <span class="col-sm-2">작성자</span>
-        <span class="col-sm-2">삭제</span>
-      </li>
-      <li>
-        <hr />
-      </li>
-      <li style="display: none;">
-        <span class="col-sm-2">11</span>
-        <span class="col-sm-5">댓글입니다.</span>
-        <span class="col-sm-2">user10</span>
-        <button class="col-sm-2">삭제</button>
-      </li>
-    </ul>
+  <div class="header">
+    <input class="col-sm-8" id="reply">
+    <button class="col-sm-3" id="addReply">댓글등록</button>
   </div>
-
-  <div class="footer">
-    <div class="center">
-      <div class="pagination">
-
-      </div>
-    </div>
-  </div>
-
 </div>
+<table id="example" class="display" style="width: 100%">
+  <thead>
+    <tr>
+      <th>댓글번호</th>
+      <th>내용</th>
+      <th>작성자</th>
+      <th>작성일시</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th>댓글번호</th>
+      <th>내용</th>
+      <th>작성자</th>
+      <th>작성일시</th>
+    </tr>
+  </tfoot>
+</table>
+<p><button id="button">Delete selected row</button></p>
 
 <!-- <script src="js/boardService.js"></script> -->
 <script>
-const logId = "${logId}";
-const writer = "${bvo.writer}";
-const bno = "${bvo.boardNo }";
+  const logId = "${logId}";
+  const writer = "${bvo.writer}";
+  const bno = "${bvo.boardNo }";
 
+  const table = new DataTable('#example', {
+    ajax: 'datatable.do?bno=' + bno,
+    columns: [{data: 'replyNo'},
+              {data: 'reply'},
+              {data: 'replyer'},
+              {data: 'replyDate'}
+             ],
+    lengthMenu: [
+                 [5, 10, 25, -1],
+                 [5, 10, 25, 'All']
+             ]
+  });
+
+  function addNewRow(reply={}) {
+    table.row
+      .add({
+        replyNo: reply.replyNo,
+        reply: reply.reply,
+        replyer: reply.replyer,
+        replyDate: reply.replyDate
+      })
+      .draw(false);
+
+  } // end of addNewRow().
+  
+  // addReply 를 클릭하면...ajax호출...성공: 화면에 row추가.
+  document.querySelector('#addReply').addEventListener('click', function(e){
+	  let reply = document.querySelector('#reply').value;
+	  if(!logId) {
+		  alert("로그인하세요...");
+		  return;
+	  }
+	  if(!reply) {
+		  alert("댓글입력하세요...");
+		  return;
+	  }
+	  // ajax호출.
+	  fetch('addReply.do', {
+		  method: 'post',
+		  headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		  body: 'bno='+bno+'&reply='+reply+'&replyer='+logId
+	  })
+	  .then(result => result.json())
+	  .then(result => {
+		  console.log(result);
+		  if(result.retCode == 'Success') {
+			  alert('등록성공!!!');
+			  addNewRow(result.retVal);
+		  }
+		  document.querySelector('#reply').value = '';
+	  })
+	  .catch(err => console.error(err));
+  })
+  
+  
 </script>
-
-<script type="module" src="js/board.js"></script>
