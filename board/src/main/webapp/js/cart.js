@@ -1,6 +1,6 @@
 
 // 숫자 3자리 콤마찍기
-Number.prototype.formatNumber = function() {
+Number.prototype.numberFormat = function() {
 	if (this == 0)
 		return 0;
 	let regex = /(^[+-]?\d+)(\d{3})/;
@@ -29,18 +29,18 @@ let basket = {
 				rowDiv.setAttribute('data-id', cart.no);
 				rowDiv.querySelector('img').setAttribute('src', 'image/' + cart.productNm + '.jpg');
 				rowDiv.querySelector('div.pname span').innerText = cart.productNm;
-				rowDiv.querySelector('div.basketprice').childNodes[2].textContent = cart.price;
+				rowDiv.querySelector('div.basketprice').childNodes[2].textContent = cart.price.numberFormat() + "원";
 				rowDiv.querySelector('div.basketprice input[name="p_price"]').value = cart.price; // 가격부분.
 				rowDiv.querySelector('div.basketprice input[name="p_price"]').setAttribute('id', 'p_price' + cart.no);
 
-				rowDiv.querySelector('div.updown input[name="p_num1"]').value = cart.qty; // 수량출력부분.
-				rowDiv.querySelector('div.updown input[name="p_num1"]').setAttribute('id', 'p_num' + cart.no); //
+				rowDiv.querySelector('div.updown input[name="p_num0"]').value = cart.qty; // 수량출력부분.
+				rowDiv.querySelector('div.updown input[name="p_num0"]').setAttribute('id', 'p_num' + cart.no); //
 
 				rowDiv.querySelector('div.updown input').onkeyup = () => basket.changePNum(cart.no);
 				rowDiv.querySelector('div.updown span').onclick = () => basket.changePNum(cart.no);
 				rowDiv.querySelector('div.updown span:nth-of-type(2)').onclick = () => basket.changePNum(cart.no);
 
-				rowDiv.querySelector('div.sum').textContent = (cart.qty * cart.price) + "원";
+				rowDiv.querySelector('div.sum').textContent = (cart.qty * cart.price).numberFormat() + "원";
 				rowDiv.querySelector('div.sum').setAttribute('id', 'p_sum' + cart.no);
 
 				document.querySelector('#basket').append(rowDiv);
@@ -75,7 +75,7 @@ let basket = {
 		//수량, 금액 합계 계산
 		//합계 자리에 출력
 		document.querySelector('#sum_p_num span').textContent = basket.cartCount;
-		document.querySelector('#sum_p_price span').textContent = basket.cartTotal;
+		document.querySelector('#sum_p_price span').textContent = basket.cartTotal.numberFormat();
 	},
 
 	changePNum: function(no) {
@@ -114,7 +114,7 @@ let basket = {
 			() => {
 				//수량, 금액변경.
 				qtyElement.value = parseInt(qtyElement.value) + qty;
-				sumElemement.innerText = parseInt(price) * parseInt(qtyElement.value) + "원";
+				sumElemement.innerText = (parseInt(price) * parseInt(qtyElement.value)).numberFormat() + "원";
 
 				//전체수량, 전체금액
 				basket.cartCount += qty;
