@@ -35,6 +35,7 @@
         </div>
         <div class="split"></div>
       </div>
+      <!-- 헤더부분. -->
 
       <!-- 데이터 부분. -->
       <div class="row data" data-id="0" style="display: none;">
@@ -68,13 +69,16 @@
         </div>
       </div>
       <!-- 데이터 부분. -->
+
     </div>
 
+    <!-- 선택삭제. -->
     <div class="right-align basketrowcmd">
       <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
       <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
     </div>
 
+    <!-- 합계정보보여주기. -->
     <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: <span>4</span>개</div>
     <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: <span>74,200</span>원</div>
 
@@ -84,11 +88,12 @@
         <a href="javascript:void(0);">선택한 상품 주문</a>
       </div>
     </div>
+
   </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="./js/cartService.js"></script>
-  <script src="./js/jcart.js"></script>
+  <script src="./js/cart.js"></script>
 </body>
 
 </html>

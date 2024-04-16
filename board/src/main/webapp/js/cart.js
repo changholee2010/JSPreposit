@@ -1,4 +1,3 @@
-
 // 숫자 3자리 콤마찍기
 Number.prototype.numberFormat = function() {
 	if (this == 0)
@@ -80,6 +79,7 @@ let basket = {
 
 	changePNum: function(no) {
 		console.log('no, ', no)
+
 		let qty = 0;
 		let price = event.currentTarget.parentElement.parentElement.previousElementSibling.children[0].value;
 		let sumElemement = event.currentTarget.parentElement.parentElement.nextElementSibling;
@@ -105,6 +105,7 @@ let basket = {
 			}
 
 		}
+		// 아래는 id값을 부여해서 간편하게 가져온다.
 		price = document.querySelector('#p_price' + no).value;
 		qtyElement = document.querySelector('#p_num' + no);
 		sumElemement = document.querySelector('#p_sum' + no);
@@ -126,9 +127,41 @@ let basket = {
 	},
 
 	delCheckedItem: function() {
+		document.querySelectorAll('[data-id]').forEach((item, idx) => {
+			if (idx > 0) {
+				if (item.querySelector('div.check input:checked')) {
+					let price = item.querySelector('div.basketprice input').value;
+					let qty = item.querySelector('div.updown input').value;
+					let no = item.dataset.id;
+
+					svc.cartRemove(no,
+						result => {
+							if (result.retCode == 'Success') {
+
+								basket.cartCount -= qty;
+								basket.cartTotal -= (parseInt(price) * parseInt(qty));
+								basket.reCalc();
+
+								document.querySelector('[data-id="' + no + '"]').remove();
+							}
+						},
+						err => {
+							console.error(err);
+						}
+					)
+				}// end of checked.
+			}// end of row
+		});
 	},
 
 	delAllItem: function() {
+		document.querySelectorAll('[data-id]').forEach((item, idx) => {
+			if (idx > 0) {
+				item.querySelector('div.check input').checked = true;
+			}
+		})
+
+		basket.delCheckedItem();
 	},
 };
 

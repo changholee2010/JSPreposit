@@ -10,12 +10,15 @@ Number.prototype.numberFormat = function() {
 	return nstr;
 };
 
-let basket = {
+const basket = {
 	cartCount: 0, // 전체수량.
 	cartTotal: 0, // 전체금액.
 
+
+	/////////////////////////////
+	// 목록.
+	/////////////////////////////
 	list: function() {
-		// 목록.
 		svc.cartList(function(result) {
 
 			result.forEach(cart => {
@@ -41,13 +44,14 @@ let basket = {
 
 				rowDiv.find('div.updown input').keyup(() => basket.changePNum(cart.no));
 				rowDiv.find('div.updown span').click(() => basket.changePNum(cart.no));
-				rowDiv.find('div.updown span:eq(1)').click(() => basket.changePNum(cart.no));
 
 				rowDiv.find('div.sum').text((cart.qty * cart.price).numberFormat() + "원");
 				rowDiv.find('div.sum').attr('id', 'p_sum' + cart.no);
 
-				$('#basket').append(rowDiv);
-			})
+				//$('#basket').append(rowDiv);
+				rowDiv.appendTo('#basket');
+			})// end of forEach.
+
 			basket.reCalc();
 
 		}, function(err) {
@@ -55,10 +59,16 @@ let basket = {
 		})
 	},
 
+
+	/////////////////////////////
+	// 삭제버튼.
+	/////////////////////////////
 	delItem: function() {
 		let delNo = event.currentTarget.parentElement.parentElement.parentElement.dataset.id;
+		delNo = $(event.currentTarget).closest('div.row').data('id');
+
 		svc.cartRemove(delNo,
-			(result) => {
+			result => {
 				if (result.retCode == 'Success') {
 
 					let price = $('#p_price' + delNo).val();
@@ -71,9 +81,13 @@ let basket = {
 				}
 
 			},
-			(err) => { console.error(err) })
+			err => { console.error(err) })
 	},
 
+
+	/////////////////////////////
+	// 화면재계산.
+	/////////////////////////////
 	reCalc: function() {
 		//수량, 금액 합계 계산
 		//합계 자리에 출력
@@ -81,10 +95,15 @@ let basket = {
 		$('#sum_p_price span').text(basket.cartTotal.numberFormat());
 	},
 
+
+	/////////////////////////////
+	// 수량변경.
+	/////////////////////////////
 	changePNum: function(no) {
-		console.log('no, ', no);
+
 		if (!no) return;
-		let qty = 0;
+
+		let qty = -1;
 		let price = $(event.currentTarget).parentsUntil('div.row').find('input.p_price').val();
 		let sumElemement = $(event.currentTarget).parentsUntil('div.row').find('div.sum');
 		let qtyElement = $(event.currentTarget).parentsUntil('div.row').find('input.p_num');
@@ -92,21 +111,19 @@ let basket = {
 		if (event.target.nodeName == "I") {
 			if (event.target.className.indexOf('up') != -1) {
 				qty = 1;
-			} else {
-				qty = -1;
 			}
 
 		} else if (event.target.nodeName == "INPUT") {
 			if (event.key == 'ArrowUp') {
 				qty = 1;
-			} else {
-				qty = -1;
 			}
 
 		}
-		//price = $('#p_price' + no).val();
-		//qtyElement = $('#p_num' + no);
-		//sumElemement = $('#p_sum' + no);
+
+		price = $('#p_price' + no).val();
+		qtyElement = $('#p_num' + no);
+		sumElemement = $('#p_sum' + no);
+
 		console.log(price, sumElemement, qtyElement);
 
 		let curQty = qtyElement.val();
@@ -126,6 +143,10 @@ let basket = {
 			() => alert('error'));
 	},
 
+
+	/////////////////////////////
+	// 선택삭제.
+	/////////////////////////////
 	delCheckedItem: function() {
 
 		$('div[data-id]').each((idx, item) => {
@@ -152,6 +173,10 @@ let basket = {
 		})
 	},
 
+
+	/////////////////////////////
+	// 비우기.
+	/////////////////////////////
 	delAllItem: function() {
 		$('div[data-id]').each((idx, item) => {
 			if (idx > 0)
