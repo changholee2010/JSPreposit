@@ -79,6 +79,7 @@ let basket = {
 	},
 
 	changePNum: function(no) {
+		console.log('no, ', no)
 		let qty = 0;
 		let price = event.currentTarget.parentElement.parentElement.previousElementSibling.children[0].value;
 		let sumElemement = event.currentTarget.parentElement.parentElement.nextElementSibling;
@@ -104,18 +105,16 @@ let basket = {
 			}
 
 		}
-		console.log('before: ', price, qtyElement, sumElemement);
 		price = document.querySelector('#p_price' + no).value;
 		qtyElement = document.querySelector('#p_num' + no);
 		sumElemement = document.querySelector('#p_sum' + no);
-		console.log('after: ', price, qtyElement, sumElemement);
 
 		let cvo = { no, qty }
 		svc.cartUpdate(cvo,
 			() => {
 				//수량, 금액변경.
 				qtyElement.value = parseInt(qtyElement.value) + qty;
-				sumElemement.innerText = price * qtyElement.value + "원";
+				sumElemement.innerText = parseInt(price) * parseInt(qtyElement.value) + "원";
 
 				//전체수량, 전체금액
 				basket.cartCount += qty;
