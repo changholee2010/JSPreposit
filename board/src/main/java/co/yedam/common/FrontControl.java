@@ -18,11 +18,14 @@ import co.yedam.control.AddMemberForm;
 import co.yedam.control.AddReply;
 import co.yedam.control.BoardControl;
 import co.yedam.control.BoardListControl;
+import co.yedam.control.CartList;
 import co.yedam.control.ChartForm;
 import co.yedam.control.ChartJson;
 import co.yedam.control.DataForm;
 import co.yedam.control.DataTable;
+import co.yedam.control.DelCart;
 import co.yedam.control.DomForm;
+import co.yedam.control.EditCart;
 import co.yedam.control.LoginControl;
 import co.yedam.control.LoginFormControl;
 import co.yedam.control.LogoutControl;
@@ -95,6 +98,13 @@ public class FrontControl extends HttpServlet {
 
 		// datatable.
 		map.put("/datatable.do", new DataTable());
+		
+		// 카트목록.
+		map.put("/cartList.do", new CartList());
+		// 수량변경.
+		map.put("/editCart.do", new EditCart());
+		// 카트상품삭제.
+		map.put("/delCart.do", new DelCart());
 
 	}
 

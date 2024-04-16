@@ -29,4 +29,21 @@
     where member_id = #{mid}
   </delete>
   
+  <select id="selectList" resultType="co.yedam.vo.CartVO">
+    select *
+    from tbl_cart
+    order by 1
+  </select>
+  
+  <update id="updateCart" parameterType="co.yedam.vo.CartVO">
+    update tbl_cart
+    set qty = qty + #{qty}
+    where no = #{no}
+  </update>
+  
+  <delete id="deleteCart" parameterType="int">
+    delete from tbl_cart
+    where no = #{no}
+  </delete>
+  
 </mapper>

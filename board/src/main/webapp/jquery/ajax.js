@@ -36,15 +36,17 @@ $(document).ready(function() {
 			dataType: 'json'
 		})
 			.done(function(result) {
-				console.log(result);
 				let member = {
 					memberId: $('input[name="mid"]').val(),
 					memberPw: $('input[name="pass"]').val(),
 					memberNm: $('input[name="name"]').val(),
 					phone: $('input[name="phone"]').val()
 				}
-
-				$('div#show tbody').append(makeRow(member))
+				if (result.retCode == "Success") {
+					$('div#show tbody').append(makeRow(member))
+				} else {
+					alert('처리중 예외.')
+				}
 			})
 			.fail(function(err) {
 				console.error(err);
