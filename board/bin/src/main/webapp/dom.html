@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom.html</title>
+</head>
+<body>
+  <!-- jsp 페이지 응답/ xml, json 데이터 응답. -->
+  <div id="show">
+    <!--
+    <ul>
+      <li>사과</li>
+      <li>복숭아</li>
+      <li>수박</li>
+    </ul> 
+    <table border="1">
+      <tr>
+        <td>11</td><td>홍길동</td><td>100</td>
+      </tr>
+      <tr>
+        <td>12</td><td>김민석</td><td>90</td>
+      </tr>
+      <tr>
+        <td>13</td><td>박만석</td><td>150</td>
+      </tr>
+    </table>
+     -->
+  </div>
+  
+  <script>
+    // Document Object Model
+    const data = ['사과', '복숭아', '수박', '포도', '참외'];
+    
+    const obj = {name: '홍길동', age: 20, phone: '010-1111-2222'}
+    console.log('이름: ', obj.name);
+    console.log('나이: ', obj['age']);
+    let field = 'phone';
+    console.log('연락처: ', obj[field]);
+    
+    // obj객체의 각 속성들.
+    for (let prop in obj) {
+    	console.log(prop, obj[prop]);
+    }
+    
+    // 배열의 값.
+    for (let fruit of data) {
+    	console.log(fruit);
+    }
+
+    const members = [{mno: 11, name: '홍길동', point: 100},
+    	             {mno: 12, name: '김민석', point: 90},
+    	             {mno: 13, name: '박만석', point: 150}
+                    ];
+
+    let tab = document.createElement('table');
+    tab.setAttribute('border', '1');
+    // 회원정보를 표로 출력. 작성.
+	for (let member of members) {	
+	    // tr > td * 3
+	    let tr = document.createElement('tr');
+	    for (let prop in member) {
+	    	let td = document.createElement('td');
+	    	td.innerText = member[prop];
+	    	tr.appendChild(td);
+	    }
+	    tab.appendChild(tr);
+	}    
+    document.querySelector('#show').appendChild(tab);
+
+    function makeTable() {
+    	const ul = document.createElement('table');
+        ul.setAttribute('border', '1');
+
+        data.forEach(function (elem, idx, ary) {
+        	// console.log(elem, idx, ary);
+    	    let li = document.createElement('tr');
+
+    	    let td1 = document.createElement('td');
+        	td1.innerText = idx + 1;
+    	    li.appendChild(td1);
+    	    let td2 = document.createElement('td');
+        	td2.innerText = elem;
+    	    li.appendChild(td2);
+    	    
+        	ul.appendChild(li);
+        });
+        
+        document.querySelector('#show').appendChild(ul);
+    } // end of makeTable.
+    
+
+  </script>
+</body>
+</html>
