@@ -28,6 +28,9 @@ public class CartList implements Control {
 		if (info == null) {
 			return;
 		}
+		if (!req.getRemoteAddr().equals("0:0:0:0:0:0:0:1")) {
+			return;
+		}
 		MemberService svc = new MemberServiceImpl();
 		List<CartVO> list = svc.cartList();
 
