@@ -3,9 +3,10 @@
  */
 
 const svc = {
+	// 장바구니 목록.
 	cartList(successCall, errorCall) {
 		fetch('cartList.do')
-			.then(resolve => resolve.json())
+			.then(resolve => resolve.json()) // json문자->객체.
 			.then(successCall)
 			.catch(errorCall);
 	},
