@@ -1,7 +1,7 @@
 /**
  * func.js
  */
-const data = ['Apple', 'Banana', 'Cherry'];
+const fruits = ['Apple', 'Banana', 'Cherry'];
 
 document.querySelector('#show').innerHTML = '';
 
@@ -9,7 +9,7 @@ document.querySelector('#show').innerHTML = '';
 let ul = document.createElement('ul');
 document.querySelector('#show').appendChild(ul);
 
-data.forEach(elem => {
+fruits.forEach(elem => {
 	let li = document.createElement('li');
 	li.addEventListener('mouseover', e => {
 		li.style.background = 'red';
