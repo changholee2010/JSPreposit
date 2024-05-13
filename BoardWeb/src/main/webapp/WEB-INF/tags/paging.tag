@@ -3,7 +3,8 @@
 
 <%@ attribute name="pageInfo" type="com.yedam.common.Page"
 	required="true"%>
-
+<p>${pageInfo }</p>
+<% System.out.println(request.getAttribute("pageInfo")); %>
 <c:forEach var="p" begin="${pageInfo.start }" end="${pageInfo.end }">
 	<c:if test="${pageInfo.prev }">
 		<a href="${p }">&laquo;</a>

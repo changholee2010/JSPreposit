@@ -9,6 +9,7 @@
 </head>
 <body>
 	<p>${paging }</p>
+
 	<my:paging pageInfo="${paging }"/>
 
 </body>
